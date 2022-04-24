@@ -4,7 +4,7 @@ return [
     'name' => 'LaravelPWA',
     'manifest' => [
         'name' => env('APP_NAME', 'My PWA App'),
-        'short_name' => 'BROBug',
+        'short_name' => 'BroBug',
         'description' => 'News tech website',
         'start_url' => '/admin/login',
         'background_color' => '#fff',
