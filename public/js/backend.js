@@ -1,0 +1,1 @@
+window.tooltipTrigger=function(){var o=$(".tooltip-selector");o.length>0&&o.tooltip()},$((function(){tooltipTrigger()}));

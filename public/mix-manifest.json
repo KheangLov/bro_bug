@@ -1,0 +1,9 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/js/backend.js": "/js/backend.js",
+    "/js/vue.js": "/js/vue.js",
+    "/css/app.css": "/css/app.css",
+    "/css/dark-backend.css": "/css/dark-backend.css",
+    "/css/backend.css": "/css/backend.css",
+    "/css/auth.css": "/css/auth.css"
+}
