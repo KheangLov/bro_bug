@@ -20,6 +20,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "silviolleite/laravelpwa": "^2.0",
         "stevebauman/location": "^6.4"
     },
     "require-dev": {
@@ -37,11 +38,13 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "JoeDixon\\" : "app/Overrides/JoeDixon/",
-            "Backpack\\CRUD\\" : "app/Overrides/Backpack/CRUD/"
+            "Backpack\\CRUD\\" : "app/Overrides/Backpack/CRUD/",
+            "LaravelPWA\\": "app/Overrides/LaravelPWA/"
         },
         "exclude-from-classmap": [
             "vendor/joedixon/laravel-translation/src/Drivers/Translation.php",
-            "vendor/backpack/crud/src/LicenseCheck.php"
+            "vendor/backpack/crud/src/LicenseCheck.php",
+            "vendor/silviolleite/laravelpwa/Services/ManifestService.php"
         ]
     },
     "autoload-dev": {
