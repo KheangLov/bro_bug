@@ -4,7 +4,7 @@
     @include(backpack_view('inc.head'))
     <link rel="stylesheet" type="text/css" href="{{ asset("css/auth.css").'?v='.config('backpack.base.cachebusting_string') }}">
 </head>
-<body class="app flex-row align-items-center">
+<body class="app flex-row align-items-center overflow-auto">
     @yield('header')
 
     <div class="container-fluid h-100">
