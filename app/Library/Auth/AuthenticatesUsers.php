@@ -8,7 +8,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Stevebauman\Location\Facades\Location;
 use Victorybiz\GeoIPLocation\GeoIPLocation;
 use Illuminate\Validation\ValidationException;
 use Backpack\CRUD\app\Library\Auth\RedirectsUsers;
@@ -122,28 +121,18 @@ trait AuthenticatesUsers
             return $this->logout($request, true);
         }
 
-        $uptData = [
-            'last_login_at' => Carbon::now()
-        ];
-        $ip = $request->ip();
-        $position = Location::get($ip);
-        $ips['ip'] = $request->ip();
-        $ips['client_ip'] = $request->getClientIp();
-        $ips['SERVER'] = $_SERVER;
-        Log::info('IP address: ', [$ips]);
         $geoip = new GeoIPLocation();
-        Log::info('GeoIP: ', [$geoip]);
         Log::info('GeoIP Data: ', [$geoip->getIP(), $geoip->getLatitude(), $geoip->getLongitude(), $geoip->getLocation()]);
 
-        if ($ip) {
-            $uptData['last_login_ip'] = $ip;
-        }
-
-        if ($position) {
-            $uptData['last_login_location'] = $position;
-        }
-
-        $user->update($uptData);
+        $user->update([
+            'last_login_at' => Carbon::now(),
+            'last_login_ip' => $geoip->getIP(),
+            'last_login_location' => json_encode([
+                'lat' => $geoip->getLatitude(),
+                'lng' => $geoip->getLongitude(),
+                'location' => $geoip->getLocation(),
+            ])
+        ]);
 
         if ($response = $this->authenticated($request, $user)) {
             return $response;
