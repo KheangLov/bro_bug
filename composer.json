@@ -21,7 +21,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "silviolleite/laravelpwa": "^2.0",
-        "stevebauman/location": "^6.4"
+        "stevebauman/location": "^6.4",
+        "victorybiz/geoip-location": "^1.1"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

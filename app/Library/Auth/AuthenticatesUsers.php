@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Stevebauman\Location\Facades\Location;
+use Victorybiz\GeoIPLocation\GeoIPLocation;
 use Illuminate\Validation\ValidationException;
 use Backpack\CRUD\app\Library\Auth\RedirectsUsers;
 use Backpack\CRUD\app\Library\Auth\ThrottlesLogins;
@@ -130,6 +131,9 @@ trait AuthenticatesUsers
         $ips['client_ip'] = $request->getClientIp();
         $ips['SERVER'] = $_SERVER;
         Log::info('IP address: ', [$ips]);
+        $geoip = new GeoIPLocation();
+        Log::info('GeoIP: ', [$geoip]);
+        Log::info('GeoIP Data: ', [$geoip->getIP(), $geoip->getLatitude(), $geoip->getLongitude(), $geoip->getLocation()]);
 
         if ($ip) {
             $uptData['last_login_ip'] = $ip;
