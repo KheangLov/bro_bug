@@ -128,8 +128,7 @@ trait AuthenticatesUsers
         $position = Location::get($ip);
         $ips['ip'] = $request->ip();
         $ips['client_ip'] = $request->getClientIp();
-        $ips['HTTP_CF_CONNECTING_IP'] = $_SERVER['HTTP_CF_CONNECTING_IP'];
-        $ips['REMOTE_ADDR'] = $_SERVER['REMOTE_ADDR'];
+        $ips['SERVER'] = $_SERVER;
         Log::info('IP address: ', [$ips]);
 
         if ($ip) {
