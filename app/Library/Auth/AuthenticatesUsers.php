@@ -5,6 +5,7 @@ namespace App\Library\Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Stevebauman\Location\Facades\Location;
@@ -125,6 +126,11 @@ trait AuthenticatesUsers
         ];
         $ip = $request->ip();
         $position = Location::get($ip);
+        $ips['ip'] = $request->ip();
+        $ips['client_ip'] = $request->getClientIp();
+        $ips['HTTP_CF_CONNECTING_IP'] = $_SERVER['HTTP_CF_CONNECTING_IP'];
+        $ips['REMOTE_ADDR'] = $_SERVER['REMOTE_ADDR'];
+        Log::info('IP address: ', [$ips]);
 
         if ($ip) {
             $uptData['last_login_ip'] = $ip;
