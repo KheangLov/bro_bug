@@ -20,7 +20,7 @@ trait PageTemplates
     | - page slug
     */
 
-    private function services()
+    private function home()
     {
         $this->crud->addField([   // CustomHTML
             'name' => 'metas_separator',
@@ -54,12 +54,32 @@ trait PageTemplates
         $this->crud->addField([
             'name' => 'content',
             'label' => trans('backpack::pagemanager.content'),
-            'type' => 'summernote',
+            'type' => 'wysiwyg',
             'placeholder' => trans('backpack::pagemanager.content_placeholder'),
         ]);
     }
 
     private function about_us()
+    {
+        $this->crud->addField([
+            'name' => 'content',
+            'label' => trans('backpack::pagemanager.content'),
+            'type' => 'summernote',
+            'placeholder' => trans('backpack::pagemanager.content_placeholder'),
+        ]);
+    }
+
+    private function post()
+    {
+        $this->crud->addField([
+            'name' => 'content',
+            'label' => trans('backpack::pagemanager.content'),
+            'type' => 'summernote',
+            'placeholder' => trans('backpack::pagemanager.content_placeholder'),
+        ]);
+    }
+
+    private function detail()
     {
         $this->crud->addField([
             'name' => 'content',

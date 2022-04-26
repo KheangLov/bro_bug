@@ -7,7 +7,10 @@
 @section('content_rgt')
     <div id="login_form">
         <h4 class="mb-3">
-            Welcome to {!! config('backpack.base.project_logo') !!}!
+            Welcome to
+            <a href="{{ url('/') }}">
+                {!! config('backpack.base.project_logo') !!}
+            </a>!
         </h4>
         <span class="text-muted">
             Please sign-in to your account and start the adventure

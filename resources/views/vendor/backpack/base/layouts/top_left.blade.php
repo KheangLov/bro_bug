@@ -27,7 +27,6 @@
     @stack('before_scripts')
 
     @include(backpack_view('inc.scripts'))
-    <script src="{{ asset('js/backend.js') . '?v=' . config('backpack.base.cachebusting_string') }}"></script>
 
     @yield('after_scripts')
     @stack('after_scripts')

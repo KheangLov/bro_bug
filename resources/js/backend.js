@@ -1,3 +1,5 @@
+require('./vue');
+
 window.tooltipTrigger = () => {
     const ele = $('.tooltip-selector');
     if (ele.length > 0) {

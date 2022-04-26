@@ -6,3 +6,13 @@
 
 require('./bootstrap');
 require('./vue');
+window.$ = require("jquery");
+
+$(window).scroll(function() {
+    const btn = $('#back_to_top');
+    if ($(window).scrollTop() > 300) {
+        btn.removeClass('d-none');
+    } else {
+        btn.addClass('d-none');
+    }
+});

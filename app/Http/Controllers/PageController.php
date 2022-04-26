@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Backpack\PageManager\app\Models\Page;
+use App\Models\Page;
 use App\Http\Controllers\Controller;
 
 class PageController extends Controller
@@ -11,13 +11,13 @@ class PageController extends Controller
     {
         $page = Page::findBySlug($slug);
 
-        if (!$page)
-        {
+        if (!$page || ($slug == 'article' && !$subs)) {
             abort(404, 'Please go back to our <a href="'.url('').'">homepage</a>.');
         }
 
         $this->data['title'] = $page->title;
         $this->data['page'] = $page->withFakes();
+        $this->data['page'] = $subs;
 
         return view('pages.'.$page->template, $this->data);
     }

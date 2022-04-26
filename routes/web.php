@@ -35,7 +35,7 @@ Route::get('theme/{color}', function ($color) {
 });
 
 Route::get('/', function () {
-    return redirect('home');
+    return redirect('homepage');
 });
 
 Route::get('{page}/{subs?}', ['uses' => '\App\Http\Controllers\PageController@index'])
