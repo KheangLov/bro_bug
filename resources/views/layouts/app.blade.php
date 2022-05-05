@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="app-url" content="{{ env('APP_URL') }}" />
 
     <title>{{ $title }} | {{ env('APP_NAME', 'Lara') }}</title>
     @laravelPWA
@@ -14,7 +16,7 @@
     @stack('after_styles')
 </head>
 <body class="antialiased">
-    <div id="app_bro_bug">
+    <div id="app_bro_bug" class="d-none">
         <nav class="navbar navbar-light bg-white border-bottom py-3">
             <div class="container d-block">
                 <div class="row gy-3 align-items-center">
@@ -57,7 +59,7 @@
                                 </div>
                                 <div class="offcanvas-body">
                                     <nav class="nav flex-column">
-                                        <a class="nav-link text-dark{{ request()->segment(1) == 'homeage' ? ' active' : '' }}" href="{{ url('/') }}">Home</a>
+                                        <a class="nav-link text-dark{{ request()->segment(1) == 'homepage' ? ' active' : '' }}" href="{{ url('/') }}">Home</a>
                                         <a class="nav-link text-dark{{ request()->segment(1) == 'articles' ? ' active' : '' }}" href="{{ url('/articles') }}">Category</a>
                                         <a class="nav-link text-dark" href="#">Sport</a>
                                     </nav>

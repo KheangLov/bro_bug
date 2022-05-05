@@ -4,7 +4,7 @@
             <img
                 :src="img"
                 :alt="img"
-                :class="`img-fluid rounded-3 ${img_classes ? img_classes : 'img-post-media-sm'}`"
+                :class="`img-fluid rounded-3 post-media-sm-img-custom ${img_classes ? img_classes : 'img-post-media-sm'}`"
             >
         </div>
         <div class="flex-grow-1 align-self-center post-content">
@@ -32,13 +32,31 @@
             </p>
             <a href="#" class="post-author d-flex align-items-center text-decoration-none">
                 <div
-                    class="author-pic rounded-circle bg-white me-2"
-                    :style="`background-image: url(${user.img})`"
+                    class="author-pic rounded-circle me-2"
+                    :style="user.img ? `background-image: url(${user.img})` : 'background-color: rgba(0, 0, 0, 0.2)'"
                 >
+                    <div v-if="!user.img" class="d-flex justify-content-center">
+                        <span class="text-white fs-5 fw-bold text-uppercase align-self-center p-1">
+                            {{ user.name.slice(0, 1) }}
+                        </span>
+                    </div>
                 </div>
                 <div class="text-muted user-info-sm">
-                    <strong class="fw-bold text-dark d-block">{{ user.name }}</strong>
-                    <span>{{ user.role }}</span>
+                    <strong
+                        class="fw-bold text-dark d-block"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="bottom"
+                        :title="user.name"
+                    >
+                        {{ user.name }}
+                    </strong>
+                    <span
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="bottom"
+                        :title="user.role"
+                    >
+                        {{ user.role }}
+                    </span>
                 </div>
             </a>
         </div>

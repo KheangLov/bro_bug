@@ -44,6 +44,17 @@ class CategoryCrudController extends CrudController
                 },
             ],
         ]);
+        CRUD::addFilter(
+            [
+                'type' => 'simple',
+                'name' => 'trashed',
+                'label' => 'Trashed'
+            ],
+            false,
+            function () {
+                $this->crud->query->onlyTrashed();
+            }
+        );
     }
 
     protected function setupShowOperation()

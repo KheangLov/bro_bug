@@ -8,11 +8,31 @@ require('./bootstrap');
 require('./vue');
 window.$ = require("jquery");
 
-$(window).scroll(function() {
-    const btn = $('#back_to_top');
-    if ($(window).scrollTop() > 300) {
-        btn.removeClass('d-none');
-    } else {
-        btn.addClass('d-none');
+$(function() {
+    $(window).scroll(function() {
+        const btn = $('#back_to_top');
+        if ($(window).scrollTop() > 300) {
+            btn.removeClass('d-none');
+        } else {
+            btn.addClass('d-none');
+        }
+    });
+});
+
+Vue.mixin({
+    data() {
+        const app_url = $('meta[name="app-url"]').attr("content");
+        return {
+            app_url,
+        };
+    },
+    methods: {
+        getMakeRequest(url, params = {}) {
+            return axios.get(url, { params });
+        },
+    },
+    mounted() {
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
     }
 });

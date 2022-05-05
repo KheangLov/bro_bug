@@ -1,6 +1,7 @@
 Vue.component('post-media', require('./components/PostMedia.vue').default);
 Vue.component('post-small-media', require('./components/PostSmallMedia.vue').default);
 Vue.component('post-card', require('./components/PostCard.vue').default);
+Vue.component('category-card', require('./components/CategoryCard.vue').default);
 new Vue({
     el: '#app_bro_bug',
     data() {
@@ -266,27 +267,26 @@ new Vue({
             ]
         };
     },
-    async created() {
-        $('#app_bro_bug').removeClass('d-none');
-        await this.getMakeRequest(`${this.app_url}/api/v1/articles/feature`)
+    mounted() {
+        this.getMakeRequest(`${this.app_url}/api/v1/articles/feature`)
             .then(({ data: { data } }) => {
                 this.sliders = data;
-                setTimeout(() => this.slider_loaded = true, 150);
+                this.slider_loaded = true;
             })
             .catch(err => console.error(err));
-        await this.getMakeRequest(`${this.app_url}/api/v1/articles`, { per_page: 9 })
+        this.getMakeRequest(`${this.app_url}/api/v1/articles`, { per_page: 9 })
             .then(({ data: { data } }) => {
                 this.cards = data;
-                setTimeout(() => this.card_loaded = true, 150);
+                this.card_loaded = true;
             })
             .catch(err => console.error(err));
-        await this.getMakeRequest(`${this.app_url}/api/v1/categories`, {
+        this.getMakeRequest(`${this.app_url}/api/v1/categories`, {
             per_page: 2,
             with_articles: true,
         })
             .then(({ data: { data } }) => {
                 this.categories = data;
-                setTimeout(() => this.category_loaded = true, 150);
+                this.category_loaded = true;
             })
             .catch(err => console.error(err));
     }

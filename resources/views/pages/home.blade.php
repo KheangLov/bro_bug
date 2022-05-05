@@ -51,7 +51,7 @@
         </div>
     </section>
     <section class="py-5">
-        <div class="container">
+        <div :class="`container${card_loaded ? '' : ' loading-skeleton'}`">
             <div class="row g-5">
                 <div
                     v-for="({
@@ -75,6 +75,7 @@
                         :content="content"
                         :user="user"
                         :img="img"
+                        img_classes="img-card-post-lg"
                         :category_link="category_link"
                         :link="link"
                     />
@@ -83,64 +84,46 @@
         </div>
     </section>
     <section class="py-5 bg-light bg-gradient">
-        <div class="container">
+        <div :class="`container${category_loaded ? '' : ' loading-skeleton'}`">
             <div class="row g-5">
-                <div class="col-lg-6">
+                <div
+                    v-for="({
+                        category,
+                        articles,
+                        link,
+                    }, k) in categories"
+                    :class="`col-lg-${categories.length > 1 ? '6' : '12'}`"
+                    :key="k"
+                >
                     <h2 class="fs-4 fw-bold mb-4">
-                        <a href="#" class="text-dark text-decoration-none">
-                            Sports
+                        <a :href="link" class="text-dark text-decoration-none">
+                            @{{ category }}
                         </a>
                     </h2>
-                    <div
-                        v-for="({
-                            category,
-                            date,
-                            title,
-                            user,
-                            img,
-                            category_link,
-                            link
-                        }, k) in sliders"
-                        class="mb-4"
-                    >
-                        <post-small-media
-                            :category="category"
-                            :date="date"
-                            :title="title"
-                            :user="user"
-                            :img="img"
-                            :category_link="category_link"
-                            :link="link"
-                        />
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="text-dark fs-4 fw-bold mb-4">
-                        <a href="#" class="text-dark text-decoration-none">
-                            Sports
-                        </a>
-                    </h2>
-                    <div
-                        v-for="({
-                            category,
-                            date,
-                            title,
-                            user,
-                            img,
-                            category_link,
-                            link
-                        }, k) in sliders"
-                        class="mb-4"
-                    >
-                        <post-small-media
-                            :category="category"
-                            :date="date"
-                            :title="title"
-                            :user="user"
-                            :img="img"
-                            :category_link="category_link"
-                            :link="link"
-                        />
+                    <div class="row g-4">
+                        <div
+                            v-for="({
+                                category: cate_name,
+                                date,
+                                title,
+                                user,
+                                img,
+                                category_link,
+                                link: link_article
+                            }, kk) in articles"
+                            :class="`col-md-${categories.length > 1 ? '12' : '6'}`"
+                            :key="kk"
+                        >
+                            <post-small-media
+                                :category="cate_name"
+                                :date="date"
+                                :title="title"
+                                :user="user"
+                                :img="img"
+                                :category_link="category_link"
+                                :link="link_article"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

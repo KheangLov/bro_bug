@@ -29,11 +29,7 @@ class Category extends Model
 
     protected $table = 'categories';
     protected $primaryKey = 'id';
-    // public $timestamps = false;
-    // protected $guarded = ['id'];
     protected $fillable = ['name', 'slug', 'parent_id'];
-    // protected $hidden = [];
-    // protected $dates = [];
 
     /**
      * Return the sluggable configuration array for this model.
@@ -63,17 +59,17 @@ class Category extends Model
 
     public function parent()
     {
-        return $this->belongsTo('Backpack\NewsCRUD\app\Models\Category', 'parent_id');
+        return $this->belongsTo('App\Models\Category', 'parent_id');
     }
 
     public function children()
     {
-        return $this->hasMany('Backpack\NewsCRUD\app\Models\Category', 'parent_id');
+        return $this->hasMany('App\Models\Category', 'parent_id');
     }
 
     public function articles()
     {
-        return $this->hasMany('Backpack\NewsCRUD\app\Models\Article');
+        return $this->hasMany('App\Models\Article');
     }
 
     /*

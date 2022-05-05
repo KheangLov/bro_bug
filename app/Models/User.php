@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Article;
 use App\Traits\UploadTrait;
 use App\Traits\ForceDeleteTrait;
 use App\Traits\ActionMadeByTrait;
@@ -68,6 +69,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'last_login_at' => 'datetime',
     ];
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'created_by', 'id');
+    }
 
     public function setPasswordAttribute($value)
     {

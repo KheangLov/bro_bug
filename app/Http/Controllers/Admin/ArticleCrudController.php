@@ -71,7 +71,7 @@ class ArticleCrudController extends CrudController
                 'type' => 'select2',
                 'label'=> 'Category',
             ], function () {
-                return \Backpack\NewsCRUD\app\Models\Category::all()->keyBy('id')->pluck('name', 'id')->toArray();
+                return \App\Models\Category::all()->keyBy('id')->pluck('name', 'id')->toArray();
             }, function ($value) {
                 $this->crud->addClause('where', 'category_id', $value);
             });
@@ -81,7 +81,7 @@ class ArticleCrudController extends CrudController
                 'type' => 'select2_multiple',
                 'label'=> 'Tags',
             ], function () {
-                return \Backpack\NewsCRUD\app\Models\Tag::all()->keyBy('id')->pluck('name', 'id')->toArray();
+                return \App\Models\Tag::all()->keyBy('id')->pluck('name', 'id')->toArray();
             }, function ($values) {
                 $this->crud->query = $this->crud->query->whereHas('tags', function ($q) use ($values) {
                     foreach (json_decode($values) as $key => $value) {
@@ -170,7 +170,8 @@ class ArticleCrudController extends CrudController
                 'type' => 'select_from_array',
                 'options' => [
                     'PUBLISHED' => 'PUBLISHED',
-                    'DRAFT' => 'DRAFT'
+                    'DRAFT' => 'DRAFT',
+                    'INACTIVE' => 'INACTIVE',
                 ],
             ]);
             $this->crud->addField([

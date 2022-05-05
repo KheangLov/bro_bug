@@ -10,7 +10,7 @@
                 </h2>
             </div>
             <div class="row gx-5">
-                <div class="col-lg-8">
+                <div class="col-lg-8 mb-4">
                     <div
                         v-for="({
                             category,
@@ -43,33 +43,35 @@
                         <h2 class="fs-3 fw-bolder pb-3 mb-4 border-bottom">
                             Popular posts
                         </h2>
-                        <div
-                            v-for="({
-                                category,
-                                date,
-                                title,
-                                user,
-                                img,
-                                category_link,
-                                link
-                            }, k) in cards"
-                            class="mb-4"
-                            v-if="k < 3"
-                            :key="k"
-                        >
-                            <post-card
-                                :category="category"
-                                heading_classes="text-truncate mb-2"
-                                img_classes="img-card-popular-post mb-1"
-                                meta_classes="mb-1"
-                                body_classes="py-2"
-                                :date="date"
-                                :title="title"
-                                :user="user"
-                                :img="img"
-                                :category_link="category_link"
-                                :link="link"
-                            />
+                        <div class="row g-3">
+                            <div
+                                v-for="({
+                                    category,
+                                    date,
+                                    title,
+                                    user,
+                                    img,
+                                    category_link,
+                                    link
+                                }, k) in cards"
+                                class="col-6 col-lg-12"
+                                v-if="k < 4"
+                                :key="k"
+                            >
+                                <post-card
+                                    :category="category"
+                                    heading_classes="text-truncate mb-2"
+                                    img_classes="img-card-popular-post mb-1"
+                                    meta_classes="mb-1"
+                                    body_classes="py-2"
+                                    :date="date"
+                                    :title="title"
+                                    :user="user"
+                                    :img="img"
+                                    :category_link="category_link"
+                                    :link="link"
+                                />
+                            </div>
                         </div>
                     </div>
                     <div class="mb-5">
@@ -97,7 +99,7 @@
         </div>
     </section>
 
-    <section class="py-5 bg-light bg-gradient">
+    {{-- <section class="py-5 bg-light bg-gradient">
         <div class="container">
             <h2 class="text-center fs-2 fw-bolder mb-5">
                 Feature posts
@@ -131,7 +133,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection
 
 @push('after_scripts')

@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\ArticleAPIController;
+use App\Http\Controllers\API\CategoryAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group([
+    'prefix' => 'v1',
+    'namepaces' => 'App\Http\Controllers\API',
+], function () {
+    Route::get('/articles/feature', [ArticleAPIController::class, 'feature']);
+    Route::get('/articles', [ArticleAPIController::class, 'index']);
+    Route::get('/categories', [CategoryAPIController::class, 'index']);
 });

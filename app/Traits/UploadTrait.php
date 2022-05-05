@@ -8,14 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 trait UploadTrait
 {
-    public static function boot()
-    {
-        parent::boot();
-        static::deleting(function ($obj) {
-            Storage::disk('local')->delete($obj->{self::imageField()});
-        });
-    }
-
     public function uploadImage($value, $attributes, $return = false)
     {
         $attribute_name = $attributes;

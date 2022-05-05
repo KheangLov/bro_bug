@@ -42,6 +42,13 @@ class SettingsTableSeeder extends Seeder
             'field' => '{"name":"value","label":"Value","type":"wysiwyg","options":{"enterMode":"CKEDITOR.ENTER_BR","shiftEnterMode":"CKEDITOR.ENTER_P"}}',
             'active' => 1
         ],
+        'feature_period' => [
+            'name' => 'Feature period',
+            'description' => 'Feature period.',
+            'value' => 30,
+            'field' => '{"name":"value","label":"Value","type":"number"}',
+            'active' => 1
+        ],
     ];
 
     /**
@@ -52,7 +59,7 @@ class SettingsTableSeeder extends Seeder
     public function run()
     {
         collect($this->settings)->each(function ($v, $k) {
-            Setting::updateOrCreate(['key' => $k], $v);
+            Setting::firstOrCreate(['key' => $k], $v);
         });
     }
 
